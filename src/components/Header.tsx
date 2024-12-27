@@ -1,7 +1,10 @@
 "use client";
 
+import { MAIN_NAV_LINKS } from "@/constants/nav";
 import Link from "next/link";
 import React from "react";
+
+
 
 export const Header = () => {
   return (
@@ -17,30 +20,27 @@ export const Header = () => {
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
-          <Link href="/" className="hover:text-blue-400">
-            Home
-          </Link>
-          <Link href="/about" className="hover:text-blue-400">
-            About
-          </Link>
-          <Link href="/tours" className="hover:text-blue-400">
-            Tours
-          </Link>
-          <Link href="/blog" className="hover:text-blue-400">
-            Blog
-          </Link>
-          <Link href="/contact" className="hover:text-blue-400">
-            Contact
-          </Link>
+          {MAIN_NAV_LINKS
+            .filter((link) => !link.isCTA)
+            .map((link) => (
+              <Link key={link.href} href={link.href} className="hover:text-blue-400">
+                {link.label}
+              </Link>
+            ))}
         </nav>
 
         {/* Call-to-Action Button */}
-        <Link
-          href="/book"
-          className="hidden md:inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-          Book Now
-        </Link>
+        {MAIN_NAV_LINKS
+          .filter((link) => link.isCTA)
+          .map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="hidden md:inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+            >
+              {link.label}
+            </Link>
+          ))}
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -69,27 +69,19 @@ export const Header = () => {
       {/* Mobile Menu */}
       <div id="mobileMenu" className="hidden bg-blue-800 text-white">
         <nav className="flex flex-col space-y-4 py-4 px-6">
-          <Link href="/" className="hover:text-blue-400">
-            Home
-          </Link>
-          <Link href="/about" className="hover:text-blue-400">
-            About
-          </Link>
-          <Link href="/tours" className="hover:text-blue-400">
-            Tours
-          </Link>
-          <Link href="/blog" className="hover:text-blue-400">
-            Blog
-          </Link>
-          <Link href="/contact" className="hover:text-blue-400">
-            Contact
-          </Link>
-          <Link
-            href="/book"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-          >
-            Book Now
-          </Link>
+          {MAIN_NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${
+                link.isCTA
+                  ? "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                  : "hover:text-blue-400"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
       </div>
     </header>

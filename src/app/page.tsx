@@ -10,7 +10,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section
         className="bg-cover bg-center h-screen"
-        style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+        style={{ backgroundImage: "url('/numbered/2.jpg')" }}
       >
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center text-white px-6 md:px-12">
@@ -67,17 +67,17 @@ export default function LandingPage() {
             <Testimonial
               name="Jane Doe"
               review="The tour was incredible! The team was friendly, and the destinations were stunning."
-              image="/testimonials/jane.jpg"
+              image="/testimonials/jane.png"
             />
             <Testimonial
               name="John Smith"
               review="An unforgettable adventure! Everything was planned perfectly."
-              image="/testimonials/john.jpg"
+              image="/testimonials/john.png"
             />
             <Testimonial
               name="Alice Brown"
               review="Highly recommend! A fantastic experience with amazing customer service."
-              image="/testimonials/alice.jpg"
+              image="/testimonials/alice.png"
             />
           </div>
         </div>
@@ -132,14 +132,17 @@ const Testimonial = ({
   review: string;
   image: string;
 }) => (
-  <div className="bg-white shadow-md rounded-md p-6 text-center">
-    <Image
-      width={100}
-      height={100}
-      src={image}
-      alt={name}
-      className="w-20 h-20 mx-auto mb-4 rounded-full border-2 border-gray-300"
-    />
+  <div className="bg-white shadow-md rounded-md p-6 text-center ">
+    <div className="w-32 h-32 mx-auto mb-4 rounded-full border-2 border-gray-300 flex items-center justify-center overflow-hidden ">
+      <Image
+        width={100}
+        height={100}
+        src={image}
+        alt={name}
+        className="w-full"
+      />
+    </div>
+
     <p className="italic mb-4">&quot;{review}&quot;</p>
     <h4 className="font-bold">{name}</h4>
   </div>
